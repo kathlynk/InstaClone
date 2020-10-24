@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="16dp"
-    android:orientation="vertical"
     android:background="@android:color/black"
+    android:orientation="vertical"
     tools:context=".LoginActivity">
 
     <ImageView
         android:id="@+id/instaText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
         android:layout_weight="1"
         app:srcCompat="@drawable/nav_logo_whiteout" />
 
@@ -32,23 +32,23 @@
 
     <EditText
         android:id="@+id/etPassword"
+        style="@style/Widget.AppCompat.EditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:backgroundTint="@color/instaPink"
         android:ems="10"
         android:hint="Password"
-        android:backgroundTint="@color/instaPink"
-        android:textColorHint="@color/grey"
-        android:textColor="@android:color/white"
         android:inputType="textPassword"
-        style="@style/Widget.AppCompat.EditText" />
+        android:textColor="@android:color/white"
+        android:textColorHint="@color/grey" />
 
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:layout_marginTop="20dp"
+        android:layout_weight="1"
         android:backgroundTint="@color/purple_500"
         android:text="Log In" />
 
@@ -59,13 +59,5 @@
         android:layout_weight="1"
         android:backgroundTint="@color/teal_200"
         android:text="Sign Up" />
-
-    <ImageView
-        android:id="@+id/instaLogo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_weight="1"
-        app:srcCompat="@drawable/dark_icon" />
 
 </LinearLayout>

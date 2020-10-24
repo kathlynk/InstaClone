@@ -25,7 +25,6 @@ import com.parse.ParseUser;
 public class LoginActivity extends AppCompatActivity {
 
     public static final String TAG = "LoginAcitvity";
-    SharedPreferences sp;
     private EditText etUsername;
     private EditText etPassword;
     private Button btnLogin;
@@ -38,8 +37,7 @@ public class LoginActivity extends AppCompatActivity {
 
         this.getSupportActionBar().hide();
 
-        sp = getSharedPreferences("login",MODE_PRIVATE);
-        if(sp.getBoolean("logged",false)){
+        if(ParseUser.getCurrentUser() != null) {
             goMainActivity();
         }
 
@@ -71,7 +69,6 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
                 goMainActivity();
-                sp.edit().putBoolean("logged",true).apply();
                 Toast.makeText(LoginActivity.this, "Success!", Toast.LENGTH_SHORT).show();
             }
         });
@@ -80,5 +77,6 @@ public class LoginActivity extends AppCompatActivity {
     private void goMainActivity() {
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
+        finish();
     }
 }
