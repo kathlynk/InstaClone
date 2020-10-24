@@ -4,6 +4,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -24,6 +25,7 @@ import com.parse.ParseUser;
 public class LoginActivity extends AppCompatActivity {
 
     public static final String TAG = "LoginAcitvity";
+    SharedPreferences sp;
     private EditText etUsername;
     private EditText etPassword;
     private Button btnLogin;
@@ -36,10 +38,16 @@ public class LoginActivity extends AppCompatActivity {
 
         this.getSupportActionBar().hide();
 
+        sp = getSharedPreferences("login",MODE_PRIVATE);
+        if(sp.getBoolean("logged",false)){
+            goMainActivity();
+        }
+
         etUsername = findViewById(R.id.etUsername);
         etPassword = findViewById(R.id.etPassword);
         btnLogin = findViewById(R.id.btnLogin);
         btnSignUp = findViewById(R.id.btnSignUp);
+
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,6 +71,7 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
                 goMainActivity();
+                sp.edit().putBoolean("logged",true).apply();
                 Toast.makeText(LoginActivity.this, "Success!", Toast.LENGTH_SHORT).show();
             }
         });
