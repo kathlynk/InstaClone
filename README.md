@@ -23,14 +23,13 @@ The following **required** functionality is completed:
 
 The following **optional** features are implemented:
 
-- [X] User sees app icon in home screen and styled bottom navigation view
+- [X] User sees app icon in home screen and styled bottom navigation view.
 - [X] Style the feed to look like the real Instagram feed.
 - [X] After the user submits a new post, show an indeterminate progress bar while the post is being uploaded to Parse.
 
 The following **additional** features are implemented:
 
 - [X] Splash screen when opening the app
-- [X] Added bottom navigation bar to jump between fragments
 
 ## Video Walkthrough
 
