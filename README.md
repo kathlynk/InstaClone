@@ -29,6 +29,7 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
+- [X] Splash screen when opening the app
 - [X] Added bottom navigation bar to jump between fragments
 
 ## Video Walkthrough
