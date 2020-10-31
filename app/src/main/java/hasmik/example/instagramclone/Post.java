@@ -5,12 +5,20 @@ import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 @ParseClassName("Post")
 public class Post extends ParseObject {
 
     public static final String KEY_DESCRIPTION = "description";
     public static final String KEY_IMAGE = "image";
     public static final String KEY_USER = "user";
+    public static final String LIKE_COUNT = "likeCount";
+    public static final String LIKED = "liked";
+    public static final String CREATED_AT = "createdAt";
 
     public String getDescription() {
         return getString(KEY_DESCRIPTION);
@@ -34,5 +42,31 @@ public class Post extends ParseObject {
 
     public void setUser(ParseUser user) {
         put(KEY_USER, user);
+    }
+
+    public int getLikes() {
+        return getInt(LIKE_COUNT);
+    }
+
+    public void updateLikes(boolean like) {
+        if (like) {
+            put(LIKE_COUNT, getLikes() + 1);
+        } else {
+            put(LIKE_COUNT, getLikes() - 1);
+        }
+    }
+
+    public boolean isLiked() {
+        return getBoolean(LIKED);
+    }
+
+    public void setLiked(boolean liked) {
+        put(LIKED, liked);
+    }
+
+    public String getFormattedTime() throws ParseException {
+        SimpleDateFormat parserDate = new SimpleDateFormat("EEE MMM dd HH:mm:ss Z yyyy", Locale.ENGLISH);
+        Date date = parserDate.parse(String.valueOf(getDate(CREATED_AT)));
+        return TimeFormatter.getTimeDifference(date.toString());
     }
 }

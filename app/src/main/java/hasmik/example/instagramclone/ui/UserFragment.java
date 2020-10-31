@@ -24,7 +24,10 @@ public class UserFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_dashboard, container, false);
+
+        // Setup logout button
         btnLogOut = view.findViewById(R.id.btnLogOut);
         btnLogOut.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -28,6 +28,7 @@ import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import java.io.File;
+import java.util.Date;
 import java.util.List;
 
 public class PostActivity extends AppCompatActivity {
@@ -62,7 +63,6 @@ public class PostActivity extends AppCompatActivity {
             }
         });
 
-        //queryPosts();
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View v) {
@@ -150,23 +150,6 @@ public class PostActivity extends AppCompatActivity {
                 etDescription.setText("");
                 ivPostImage.setImageResource(0);
                 pbLoading.setVisibility(ProgressBar.INVISIBLE);
-            }
-        });
-    }
-
-    private void queryPosts() {
-        ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
-        query.include(Post.KEY_USER);
-        query.findInBackground(new FindCallback<Post>() {
-            @Override
-            public void done(List<Post> posts, ParseException e) {
-                if (e != null) {
-                    Log.e(TAG, "Issue with getting posts", e);
-                    return;
-                }
-                for (Post post : posts) {
-                    Log.i(TAG, "Post: " + post.getDescription() + ", User: " + post.getUser().getUsername());
-                }
             }
         });
     }
