@@ -9,8 +9,8 @@ import java.util.Locale;
 public class TimeFormatter {
     public static String getTimeDifference(String rawJsonDate) {
         String time = "";
-        String twitterFormat = "EEE MMM dd HH:mm:ss ZZZZZ yyyy";
-        SimpleDateFormat format = new SimpleDateFormat(twitterFormat, Locale.ENGLISH);
+        String instaFormat = "EEE MMM dd HH:mm:ss ZZZZZ yyyy";
+        SimpleDateFormat format = new SimpleDateFormat(instaFormat, Locale.ENGLISH);
         format.setLenient(true);
         try {
             long diff = (System.currentTimeMillis() - format.parse(rawJsonDate).getTime()) / 1000;
@@ -22,8 +22,10 @@ public class TimeFormatter {
                 time = String.format(Locale.ENGLISH, "%dm", diff / 60);
             else if (diff < 60 * 60 * 24)
                 time = String.format(Locale.ENGLISH, "%dh", diff / (60 * 60));
-            else if (diff < 60 * 60 * 24 * 30)
+            else if (diff < 60 * 60 * 24 * 7)
                 time = String.format(Locale.ENGLISH, "%dd", diff / (60 * 60 * 24));
+            else if (diff < 60 * 60 * 24 * 30)
+                time = getTimeStamp(rawJsonDate);
             else {
                 Calendar now = Calendar.getInstance();
                 Calendar then = Calendar.getInstance();
@@ -50,15 +52,15 @@ public class TimeFormatter {
      */
     public static String getTimeStamp(String rawJsonDate) {
         String time = "";
-        String twitterFormat = "EEE MMM dd HH:mm:ss ZZZZZ yyyy";
-        SimpleDateFormat format = new SimpleDateFormat(twitterFormat, Locale.ENGLISH);
+        String instaFormat = "EEE MMM dd HH:mm:ss ZZZZZ yyyy";
+        SimpleDateFormat format = new SimpleDateFormat(instaFormat, Locale.ENGLISH);
         format.setLenient(true);
         try {
             Calendar then = Calendar.getInstance();
             then.setTime(format.parse(rawJsonDate));
             Date date = then.getTime();
 
-            SimpleDateFormat format1 = new SimpleDateFormat("h:mm a \u00b7 dd MMM yy");
+            SimpleDateFormat format1 = new SimpleDateFormat("dd MMM yy");
 
             time = format1.format(date);
 

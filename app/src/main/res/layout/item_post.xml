@@ -7,17 +7,34 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tvUsername"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:textColor="@android:color/white"
-        android:textSize="16dp"
-        android:textStyle="bold"
-        tools:text="hasmik" />
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/ivProfilePic"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
+            app:civ_border_width="1dp"
+            app:civ_border_color="@android:color/white"
+            tools:src="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/tvUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_toEndOf="@+id/ivProfilePic"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="hasmik" />
+
+    </RelativeLayout>
 
     <ImageView
         android:id="@+id/ivImage"
@@ -26,7 +43,6 @@
         android:layout_marginBottom="10dp"
         android:scaleType="centerCrop"
         tools:srcCompat="@tools:sample/avatars" />
-
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -79,7 +95,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:textColor="@android:color/white"
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:textStyle="bold"
         tools:text="10 likes" />
 
@@ -91,7 +107,7 @@
         android:layout_marginTop="5dp"
         android:layout_marginEnd="10dp"
         android:textColor="@android:color/white"
-        android:textSize="16dp"
+        android:textSize="16sp"
         tools:text="Description goes here" />
 
     <TextView
@@ -101,7 +117,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="20dp"
         android:textColor="@color/grey"
         tools:text="1 hour ago" />
 </LinearLayout>

@@ -3,6 +3,7 @@ package hasmik.example.instagramclone;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
+import hasmik.example.instagramclone.ui.UserFragment;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -85,7 +86,7 @@ public class PostActivity extends AppCompatActivity {
         // create Intent to take a picture and return control to the calling application
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // Create a File reference for future access
-        photoFile = getPhotoFileUri(photoFileName);
+        photoFile  = getPhotoFileUri(photoFileName);
 
         // wrap File object into a content provider
         // required for API >= 24
@@ -137,6 +138,7 @@ public class PostActivity extends AppCompatActivity {
         post.setDescription(description);
         post.setImage(new ParseFile(photoFile));
         post.setUser(currentUser);
+        post.setProfilePic(currentUser.getParseFile("profilePic"));
         pbLoading.setVisibility(ProgressBar.VISIBLE);
         post.saveInBackground(new SaveCallback() {
             @Override

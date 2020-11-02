@@ -31,8 +31,8 @@ public class HomeFragment extends Fragment {
 
     public static final String TAG = "HomeFragment";
     private RecyclerView rvPosts;
-    private HomeAdapter adapter;
-    private List<Post> allPosts;
+    protected HomeAdapter adapter;
+    protected List<Post> allPosts;
 
     SwipeRefreshLayout swipeContainer;
     EndlessRecyclerViewScrollListener scrollListener;
@@ -91,7 +91,7 @@ public class HomeFragment extends Fragment {
         queryPosts();
     }
 
-    private void queryPosts() {
+    protected void queryPosts() {
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
         query.include(Post.KEY_USER);
         query.findInBackground(new FindCallback<Post>() {

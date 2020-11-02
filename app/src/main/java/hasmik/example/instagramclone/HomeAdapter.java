@@ -53,10 +53,6 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder>  {
         return posts.size();
     }
 
-    public int getAbsoluteAdapterPosition() {
-        return getAbsoluteAdapterPosition();
-    }
-
     // Clean all elements of the recycler
     public void clear() {
         posts.clear();
@@ -79,6 +75,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder>  {
         private TextView tvLikeCount;
         private TextView tvDescription;
         private TextView tvCreatedAt;
+        private ImageView ivProfilePic;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -90,6 +87,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder>  {
             tvLikeCount = itemView.findViewById(R.id.tvLikeCount);
             tvDescription = itemView.findViewById(R.id.tvDescription);
             tvCreatedAt = itemView.findViewById(R.id.tvCreatedAt);
+            ivProfilePic = itemView.findViewById(R.id.ivProfilePic);
         }
 
         public void bind(Post post) throws ParseException {
@@ -98,7 +96,13 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder>  {
             Glide.with(context).load(post.getImage().getUrl()).into(ivImage);
             tvLikeCount.setText(post.getLikes() + " likes");
             tvDescription.setText(post.getDescription());
-            tvCreatedAt.setText(post.getFormattedTime());
+            String time = post.getCreatedAt().toString();
+            tvCreatedAt.setText(TimeFormatter.getTimeDifference(time));
+            if (post.getProfilePic() == null) {
+                Glide.with(context).load(R.drawable.blank).into(ivProfilePic);
+            } else {
+                Glide.with(context).load(post.getProfilePic()).into(ivProfilePic);
+            }
 
             // loading Animation from
             final Animation animation = AnimationUtils.loadAnimation(context, R.anim.bounce);

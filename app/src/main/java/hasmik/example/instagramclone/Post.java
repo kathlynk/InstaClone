@@ -1,5 +1,7 @@
 package hasmik.example.instagramclone;
 
+import android.util.Log;
+
 import com.parse.ParseClassName;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
@@ -18,7 +20,7 @@ public class Post extends ParseObject {
     public static final String KEY_USER = "user";
     public static final String LIKE_COUNT = "likeCount";
     public static final String LIKED = "liked";
-    public static final String CREATED_AT = "createdAt";
+    public static final String PROFILE_PIC = "profilePic";
 
     public String getDescription() {
         return getString(KEY_DESCRIPTION);
@@ -64,9 +66,11 @@ public class Post extends ParseObject {
         put(LIKED, liked);
     }
 
-    public String getFormattedTime() throws ParseException {
-        SimpleDateFormat parserDate = new SimpleDateFormat("EEE MMM dd HH:mm:ss Z yyyy", Locale.ENGLISH);
-        Date date = parserDate.parse(String.valueOf(getDate(CREATED_AT)));
-        return TimeFormatter.getTimeDifference(date.toString());
+    public ParseFile getProfilePic() {
+        return getParseFile(PROFILE_PIC);
+    }
+
+    public void setProfilePic(ParseFile parseFile) {
+        put(PROFILE_PIC, parseFile);
     }
 }
